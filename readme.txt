@@ -1,6 +1,6 @@
-=== Product Table For Group Products ===
+=== Fbs WooCommerce Auction ===
 Contributors: fazlebari
-Tags: product-table-for-group-product, woocommerce, product-table, woocommerce-proup-product-tabel
+Tags: woocommerce-auction, woocommerce, auction-products
 Requires at least: 4.6
 Tested up to: 6.0.2
 Stable tag: 1.0.0
@@ -8,10 +8,10 @@ Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-An addon plugin of product table for WooCommerce to display table on WooCommerce group product page.
+Help you create WooCommerce auction type product
 
 == Description ==
-An addon plugin of product table for WooCommerce. You can display a product table on woocommerce group product. 
+Help you create WooCommerce auction type product
 
 
 **[Visit example site](https://chitabd.com/shop)**
@@ -32,9 +32,8 @@ You can show or hide tabel by a single click.
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/product-table-for-group-products` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/fbs-woocommerce-auction` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the PRODUCT TABLE-> Configure screen to configure the plugin's default setting.
 
 == Screenshots ==
 
