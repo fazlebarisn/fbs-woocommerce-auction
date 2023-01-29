@@ -1,0 +1,19 @@
+{
+    "name": "fazlebari/fbsauction",
+    "description": "A WordPress plugin to create auction type product",
+    "license": "GPLv2",
+    "autoload": {
+        "psr-4": {
+            "Fbs\\Auction\\": "includes/"
+        },
+        "files":[]
+    },
+    "authors": [
+        {
+            "name": "Fazle Bari",
+            "email": "fazlebarisn@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
