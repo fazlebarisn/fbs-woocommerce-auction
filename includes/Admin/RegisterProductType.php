@@ -10,6 +10,7 @@ class RegisterProductType{
         add_action('woocommerce_product_data_tabs', [$this, 'auction_product_tab'] );
         add_action('woocommerce_product_data_panels', [$this, 'auction_product_tab_content'] );
         add_action('woocommerce_process_product_meta', [$this, 'save_auction_product_settings'] );
+        add_action( 'woocommerce_single_product_summary', [$this, 'auction_product_front'] );
     }
 
     /**
@@ -44,8 +45,7 @@ class RegisterProductType{
     public function auction_product_tab_content() {
 
     ?>
-        <div id='auction_product_options' class='panel woocommerce_options_panel'>
-        <h1>kkkkkkkkk</h1>
+        <div id='fbs_auction_product_options' class='panel woocommerce_options_panel'>
             <div class='options_group'><?php
                             
                 woocommerce_wp_text_input(
@@ -74,6 +74,15 @@ class RegisterProductType{
 
         update_post_meta( $post_id, 'auction_product_info', esc_attr( $auction_product_info ) );
         }
+    }
+    
+    function auction_product_front () {
+        global $product;
+
+        if ( 'fbs_auction' == $product->get_type() ) {      
+        echo( get_post_meta( $product->get_id(), 'fbs_product_info' )[0] );
+
+    }
     }
 
 }
