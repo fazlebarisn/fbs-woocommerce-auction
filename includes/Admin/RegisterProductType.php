@@ -10,7 +10,6 @@ class RegisterProductType{
         add_action('woocommerce_product_data_tabs', [$this, 'auction_product_tab'] );
         add_action('woocommerce_product_data_panels', [$this, 'auction_product_tab_content'] );
         add_action('woocommerce_process_product_meta', [$this, 'save_auction_product_settings'] );
-        add_action( 'woocommerce_single_product_summary', [$this, 'auction_product_front'] );
     }
 
     /**
@@ -76,13 +75,5 @@ class RegisterProductType{
         }
     }
     
-    function auction_product_front () {
-        global $product;
-
-        if ( 'fbs_auction' == $product->get_type() ) {      
-        echo( get_post_meta( $product->get_id(), 'fbs_product_info' )[0] );
-
-    }
-    }
 
 }
