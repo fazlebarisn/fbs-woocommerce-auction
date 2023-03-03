@@ -31,15 +31,21 @@ class RegisterProductType{
      * @param [type] $tabs
      * @return $tabs array
      */
-    public function auction_product_tab( $tabs) {
+    public function auction_product_tab( $product_data_tab ) {
             
-        $tabs['fbs_auction'] = array(
-        'label'     => __( 'Auction Product', 'fbs-woocommerce-auction' ),
-        'target' => 'fbs_auction_product_options',
-        'class'  => 'show_if_fbs_auction_product',
+        $apt_tabs['fbs_auction'] = array(
+            'label'     => __( 'Auction Product', 'fbs-woocommerce-auction' ),
+            'target' => 'fbs_auction_product_options',
+            'class'  => ['show_if_fbs_auction','hide_if_grouped', 'hide_if_external','hide_if_variable','hide_if_simple'],
         );
+
+        $position = 1; // Change this for desire position 
+        $tabs = array_slice( $product_data_tab, 0, $position, true ); // First part of original tabs 
+        $tabs = array_merge( $tabs, $apt_tabs ); // Add new 
+        $tabs = array_merge( $tabs, array_slice( $product_data_tab, $position, null, true ) ); // Glue the second part of original 
         return $tabs;
     }
+
 
     public function auction_product_tab_content() {
 
