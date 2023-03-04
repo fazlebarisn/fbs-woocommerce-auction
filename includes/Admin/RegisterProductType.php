@@ -9,7 +9,6 @@ class RegisterProductType{
         add_action('product_type_selector', [$this, 'add_auction_product_type'] );
         add_action('woocommerce_product_data_tabs', [$this, 'auction_product_tab'] );
         add_action('woocommerce_product_data_panels', [$this, 'auction_product_tab_content'] );
-        add_action('woocommerce_process_product_meta', [$this, 'save_auction_product_settings'] );
     }
 
     /**
@@ -18,6 +17,8 @@ class RegisterProductType{
      * 
      * @param [type] $types
      * @return type array
+     * @author Fazle Bari <fazlebarisn@gmail.com>
+     * @since 1.0.0
      */
     public function add_auction_product_type( $types ){
         $types[ 'fbs_auction' ] = __( 'Auction Product', 'fbs-woocommerce-auction' );
@@ -30,13 +31,15 @@ class RegisterProductType{
      *
      * @param [type] $tabs
      * @return $tabs array
+     * @author Fazle Bari <fazlebarisn@gmail.com>
+     * @since 1.0.0
      */
     public function auction_product_tab( $product_data_tab ) {
             
         $apt_tabs['fbs_auction'] = array(
             'label'     => __( 'Auction Product', 'fbs-woocommerce-auction' ),
-            'target' => 'fbs_auction_product_options',
-            'class'  => ['show_if_fbs_auction','hide_if_grouped', 'hide_if_external','hide_if_variable','hide_if_simple'],
+            'target'    => 'fbs_ap_options',
+            'class'     => ['show_if_fbs_auction','hide_if_grouped', 'hide_if_external','hide_if_variable','hide_if_simple'],
         );
 
         $position = 1; // Change this for desire position 
@@ -46,40 +49,21 @@ class RegisterProductType{
         return $tabs;
     }
 
-
+    /**
+     * This is panel section
+     *  fields added in includes/Admin/AddFields.php
+     * @return $tabs array
+     * @author Fazle Bari <fazlebarisn@gmail.com>
+     * @since 1.0.0
+     */
     public function auction_product_tab_content() {
-
     ?>
-        <div id='fbs_auction_product_options' class='panel woocommerce_options_panel'>
-            <div class='options_group'><?php
-                            
-                woocommerce_wp_text_input(
-                    array(
-                        'id' => 'auction_product_info',
-                        'label' => __( 'Auction Product Spec', 'fbs-woocommerce-auction' ),
-                        'placeholder' => '',
-                        'desc_tip' => 'true',
-                        'description' => __( 'Enter Auction product Info.', 'fbs-woocommerce-auction' ),
-                        'type' => 'text'
-                    )
-                );
-
-                ?>
+        <div id='fbs_ap_options' class='panel woocommerce_options_panel'>
+            <div class='options_group'>
+                <?php do_action( 'fbs_ap_add_fields' ); ?>
             </div>
         </div>
     <?php
     }
-
-    
-    public function save_auction_product_settings( $post_id ){
-            
-        $auction_product_info = $_POST['auction_product_info'];
-            
-        if( !empty( $auction_product_info ) ) {
-
-        update_post_meta( $post_id, 'auction_product_info', esc_attr( $auction_product_info ) );
-        }
-    }
-    
 
 }
