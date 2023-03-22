@@ -18,38 +18,18 @@ if( !function_exists('dd')){
  * I will arrange this code later
  *
  * @return void
+ * @since 1.0.0
+ * @author Fazle Bari <fazlebarisn@gmail.com>
  */
 function fbs_register_auction_product_type() {
-  class Fbs_Auction_Product extends WC_Product {
+  class WC_Product_Fbsauction extends WC_Product {
             
     public function __construct( $product ) {
-        $this->product_type = 'fbs_auction';
+        $this->product_type = 'fbsauction';
         parent::__construct( $product );
     }
   }
 }
 
 add_action( 'init', 'fbs_register_auction_product_type' );
-
-// // Make your custom product type stay selected in the product data drop-down menu
-// add_filter( 'woocommerce_product_data_tabs', 'select_custom_product_type' );
-// function select_custom_product_type( $tabs ) {
-//   // dd($tabs);
-//     global $post, $product_object;
-//     if ( $product_object instanceof Fbs_Auction_Product ) {
-
-//         $tabs['fbs_auction']['class'][] = 'active';
-//         dd($product_object);
-//     }
-//     return $tabs;
-// }
-
-// add_filter( 'default_product_tabs', 'select_custom_product_type' );
-// function select_custom_product_type( $tabs ) {
-//     global $post, $product_object;
-//     if ( $product_object instanceof Fbs_Auction_Product ) {
-//         $tabs['fbs_auction'] = 1;
-//     }
-//     return $tabs;
-// }
 

@@ -21,7 +21,7 @@ class RegisterProductType{
      * @since 1.0.0
      */
     public function add_auction_product_type( $types ){
-        $types[ 'fbs_auction' ] = __( 'Auction Product', 'fbs-woocommerce-auction' );
+        $types[ 'fbsauction' ] = __( 'Auction Product', 'fbs-woocommerce-auction' );
     
         return $types;    
     }
