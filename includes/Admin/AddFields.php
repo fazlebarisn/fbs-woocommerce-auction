@@ -23,14 +23,34 @@ class AddFields{
         $args = [];
 
         $args[] = [
-            'id'        =>'fbs_ap_price',
-            'name'      => 'fbs_ap_price',
-            'label'     =>  __( 'Price', 'fbs-woocommerce-auction' ),
-            'class'     =>  'fbs_ap_input',
-            'type'      =>  'text',
-            // 'desc_tip'  =>  true,
-            'description'=> 'Price',
-            // 'data_type' => 'decimal'
+            'id'            => 'fbs_opening_price',
+            'name'          => 'fbs_opening_price',
+            'label'         =>  __( 'Opening Price', 'fbs-woocommerce-auction' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+            'class'         =>  'fbs_ap_input',
+            'type'          =>  'text',
+            'desc_tip'      =>  true,
+            'description'   => 'Add the opining price',
+            'data_type'     => 'price'
+        ];
+        $args[] = [
+            'id'            => 'fbs_lowest_price',
+            'name'          => 'fbs_lowest_price',
+            'label'         =>  __( 'Lowest Price', 'fbs-woocommerce-auction' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+            'class'         =>  'fbs_ap_input',
+            'type'          =>  'text',
+            'desc_tip'      =>  true,
+            'description'   => 'Add the lowest price',
+            'data_type'     => 'price'
+        ];
+        $args[] = [
+            'id'            => 'fbs_buynow_price',
+            'name'          => 'fbs_buynow_price',
+            'label'         =>  __( 'Buy NOw Price', 'fbs-woocommerce-auction' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+            'class'         =>  'fbs_ap_input',
+            'type'          =>  'text',
+            'desc_tip'      =>  true,
+            'description'   => 'Add buy now price',
+            'data_type'     => 'price'
         ];
 
         // if need to add more field or change field data, then we can use this filter hook
@@ -53,9 +73,13 @@ class AddFields{
      */
     public function save_fields( $post_id ){
     
-        $fbs_ap_price = $_POST['fbs_ap_price'] ?? false;
+        $fbs_opening_price = $_POST['fbs_opening_price'] ?? false;
+        $fbs_lowest_price = $_POST['fbs_lowest_price'] ?? false;
+        $fbs_buynow_price = $_POST['fbs_buynow_price'] ?? false;
         
         //Updating Here
-        update_post_meta( $post_id, 'fbs_ap_price', esc_attr( $fbs_ap_price ) );
+        update_post_meta( $post_id, 'fbs_opening_price', esc_attr( $fbs_opening_price ) );
+        update_post_meta( $post_id, 'fbs_lowest_price', esc_attr( $fbs_lowest_price ) );
+        update_post_meta( $post_id, 'fbs_buynow_price', esc_attr( $fbs_buynow_price ) );
     }
 }
