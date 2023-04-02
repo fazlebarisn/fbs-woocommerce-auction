@@ -4,19 +4,20 @@ namespace Fbs\Auction\Frontend;
 
 class AuctionProduct{
 
+    public $product_id;
+
     function __construct()
     {
-        add_action( 'woocommerce_before_add_to_cart_form', [$this, 'auction_product_front'] );
+        $product_id = get_the_ID();
+        //add_filter( 'woocommerce_get_price_html', [$this, 'display_price'] );
     }
 
-    function auction_product_front () {
-        global $product;
+    function display_price ( $price ) {
+        //wc_price();
+        //dd($id);
+        //return $price;
         
-        if ( 'fbs_auction' == $product->get_type() ) {      
-            echo( get_post_meta( $product->get_id(), 'auction_product_info' )[0] );
-            // var_dump($product);
 
-        }
     }
     
 }
