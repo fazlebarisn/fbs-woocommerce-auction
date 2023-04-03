@@ -21,8 +21,8 @@ class AuctionProduct{
         // set opening price for auction product
         if( 'fbsauction' == $product_type ){
             // get price from database
-            $opening_price = get_post_meta( $this->product_id, 'fbs_opening_price', true );
-            $price = 'Opening Price ' . wc_price( $opening_price );
+            $opening_price = get_post_meta( $this->product_id, 'fbs_opening_price', true ) ?? '';
+            $price = __('<span class="fbs-opening-price">Bid Stating:</span> ' , 'fbs-woocommerce-auction' ) . wc_price( $opening_price );
         }  
         return $price;
     }

@@ -45,7 +45,7 @@ class AddFields{
         $args[] = [
             'id'            => 'fbs_buynow_price',
             'name'          => 'fbs_buynow_price',
-            'label'         =>  __( 'Buy NOw Price', 'fbs-woocommerce-auction' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+            'label'         =>  __( 'Buy Now Price', 'fbs-woocommerce-auction' ) . ' (' . get_woocommerce_currency_symbol() . ')',
             'class'         =>  'fbs_ap_input',
             'type'          =>  'text',
             'desc_tip'      =>  true,
