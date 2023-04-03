@@ -8,7 +8,7 @@ class AddToCard{
 
     function __construct()
     {
-        add_action( 'woocommerce_single_product_summary', [$this, 'display_product_type'] );
+        //add_action( 'woocommerce_single_product_summary', [$this, 'display_product_type'] );
     }
 
     public function display_product_type(){

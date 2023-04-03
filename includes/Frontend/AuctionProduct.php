@@ -9,7 +9,7 @@ class AuctionProduct{
     function __construct()
     {
         add_filter( 'woocommerce_get_price_html', [$this, 'display_price'] );
-        add_filter( 'woocommerce_single_product_summary', [$this, 'fbs_acution_area'] );
+        add_filter( 'woocommerce_single_product_summary', [$this, 'fbs_auction_area'],25 );
     }
 
     function display_price ( $price ) {
@@ -27,11 +27,11 @@ class AuctionProduct{
         return $price;
     }
 
-    public function fbs_acution_area(){
+    public function fbs_auction_area(){
 		global $product;
 		
 		if( method_exists( $product, 'get_type') && $product->get_type() == 'fbsauction' ){
-            //wc_get_template( 'single-product/fbs-bid.php' );
+            wc_get_template( 'single-product/fbs-bid.php' );
         }	
     }
     
