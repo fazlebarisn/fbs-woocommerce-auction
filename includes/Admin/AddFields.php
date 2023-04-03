@@ -61,6 +61,16 @@ class AddFields{
             woocommerce_wp_text_input( $arg );
         }
 
+        // add a select fropdown menu for product type
+        woocommerce_wp_select( array(
+            'id' => 'fbs_product_type',
+            'label' => 'Product Type',
+            'options' => array(
+                'new' => 'New',
+                'used' => 'Used',
+            ),
+        ) );
+
     }
 
     /**
@@ -76,10 +86,12 @@ class AddFields{
         $fbs_opening_price = $_POST['fbs_opening_price'] ?? false;
         $fbs_lowest_price = $_POST['fbs_lowest_price'] ?? false;
         $fbs_buynow_price = $_POST['fbs_buynow_price'] ?? false;
+        $fbs_product_type = $_POST['fbs_product_type'] ?? false;
         
         //Updating Here
         update_post_meta( $post_id, 'fbs_opening_price', esc_attr( $fbs_opening_price ) );
         update_post_meta( $post_id, 'fbs_lowest_price', esc_attr( $fbs_lowest_price ) );
         update_post_meta( $post_id, 'fbs_buynow_price', esc_attr( $fbs_buynow_price ) );
+        update_post_meta( $post_id, 'fbs_product_type', esc_attr( $fbs_product_type ) );
     }
 }
