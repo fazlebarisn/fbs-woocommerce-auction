@@ -33,3 +33,31 @@ function fbs_register_auction_product_type() {
 
 add_action( 'init', 'fbs_register_auction_product_type' );
 
+/**
+ * Here we will override the default single page template
+ * All template will be in templates/woocommerce folder
+ *
+ * @return void
+ * @since 1.0.1
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ */
+function fbs_override_single_product_template( $template, $template_name, $template_path ){
+
+  global $woocommerce;
+
+  if (!$template_path) {				
+    $template_path = $woocommerce->template_url;
+  }
+  $plugin_path = FBS_AUCTION_TEMPLATE.'woocommerce/';
+
+  $template_locate = locate_template( array( $template_path . $template_name, $template_name ) );
+
+  if (!$template_locate && file_exists($plugin_path . $template_name)) {
+    return $plugin_path . $template_name;
+  } else { 				
+    return $template;
+  }
+
+}
+add_filter( 'woocommerce_locate_template', 'fbs_override_single_product_template', 10, 3 );
+

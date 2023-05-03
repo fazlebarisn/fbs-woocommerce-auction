@@ -76,8 +76,10 @@ final class FbsAuction{
          define( 'FBS_AUCTION_URL' , plugins_url( '' , FBS_AUCTION_FILE ) );
          define( 'FBS_AUCTION_ASSETS' , FBS_AUCTION_URL . '/assets' );
          define( 'FBS_AUCTION_BASENAME' , plugin_basename( __FILE__ ) );
+         define( 'FBS_AUCTION_TEMPLATE', FBS_AUCTION_PATH . '/templates/' );
 
      }
+
 
      /**
       * Initialize the plugin
