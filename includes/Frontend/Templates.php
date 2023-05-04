@@ -7,7 +7,7 @@ class Templates{
     function __construct()
     {
         add_action( 'woocommerce_locate_template', [$this, 'override_single_product_template'], 10, 3 );
-        add_filter( 'woocommerce_single_product_summary', [$this, 'auction_area'], 25 );
+        add_filter( 'woocommerce_single_product_summary', [$this, 'load_files'], 25 );
     }
 
     /**
@@ -36,14 +36,17 @@ class Templates{
     }
 
     /**
-     * include fbs-bid.php file from templates/woocommerce/single-product folder 
+     * include template files from templates/woocommerce/single-product folder 
      * this will show 'Product Type', 'Bid Closing Time'
      */
-    public function auction_area(){
+    public function load_files(){
 		global $product;
 		
 		if( method_exists( $product, 'get_type') && $product->get_type() == 'fbsauction' ){
+            // add auction product template spacile information
             wc_get_template( 'single-product/fbs-bid.php' );
+            // Add to cart button 
+            wc_get_template( 'single-product/add-to-cart/fbs-action.php' );
         }	
     }
 }

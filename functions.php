@@ -44,5 +44,33 @@ add_action( 'init', 'fbs_register_auction_product_type' );
 function get_fbs_wp_timezone() {	
 	$fbs_time_zone = wp_timezone();
 	return $fbs_time_zone;
-} 
+}
+
+/**
+ * Modify is_purchasable
+ * 
+ * @return $bool  
+ * @since 1.0.1
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ */
+function fbs_is_purchasable(  $is_purchasable, $object ){
+
+  $object_type = method_exists( $object, 'get_type' ) ? $object->get_type() : $object->product_type;
+
+  if( $object_type == 'fbsauction' ) {
+
+    if( !is_user_logged_in() ) {
+      return false;
+    }
+
+    if( $object->get_price() !== '' ) {
+      return true;
+    }
+
+    return true;
+  }
+
+  return $is_purchasable;
+}
+add_filter('woocommerce_is_purchasable', 'fbs_is_purchasable', 10, 2);
 
