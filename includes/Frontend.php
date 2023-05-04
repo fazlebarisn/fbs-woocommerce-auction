@@ -7,7 +7,7 @@ class Frontend{
     function __construct()
     {
         new Frontend\Enqueue();
-        new Frontend\AddToCard();
+        new Frontend\Templates();
         new Frontend\AuctionProduct();
     }
 
