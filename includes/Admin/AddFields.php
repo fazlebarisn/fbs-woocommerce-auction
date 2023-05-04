@@ -60,7 +60,7 @@ class AddFields{
             // 'class'         =>  'fbs_ap_input',
             'type'          =>  'date',
             // 'desc_tip'      =>  true,
-            'description'   => 'Cloose bid closing time',
+            // 'description'   => 'Cloose bid closing time',
 
         ];
 
@@ -93,13 +93,13 @@ class AddFields{
      * @since 1.0.0
      */
     public function save_fields( $post_id ){
-    
-        $fbs_opening_price = $_POST['fbs_opening_price'] ?? false;
-        $fbs_lowest_price = $_POST['fbs_lowest_price'] ?? false;
-        $fbs_buynow_price = $_POST['fbs_buynow_price'] ?? false;
-        $fbs_bid_closing_date = $_POST['fbs_bid_closing_date'] ?? false;
-        $fbs_product_type = $_POST['fbs_product_type'] ?? false;
-        
+        // Sanitize data before input
+        $fbs_opening_price = isset( $_POST['fbs_opening_price'] ) ? sanitize_text_field( $_POST['fbs_opening_price'] ) : '';
+        $fbs_lowest_price = isset( $_POST['fbs_lowest_price'] ) ? sanitize_text_field( $_POST['fbs_lowest_price'] ) : '';
+        $fbs_buynow_price = isset( $_POST['fbs_buynow_price'] ) ? sanitize_text_field( $_POST['fbs_buynow_price'] ) : '';
+        $fbs_bid_closing_date = isset( $_POST['fbs_bid_closing_date'] ) ? sanitize_text_field( $_POST['fbs_bid_closing_date'] ) : '';
+        $fbs_product_type = isset( $_POST['fbs_product_type'] ) ? sanitize_text_field( $_POST['fbs_product_type'] ) : '';
+
         //Updating Here
         update_post_meta( $post_id, 'fbs_opening_price', esc_attr( $fbs_opening_price ) );
         update_post_meta( $post_id, 'fbs_lowest_price', esc_attr( $fbs_lowest_price ) );
