@@ -52,6 +52,17 @@ class AddFields{
             'description'   => 'Add buy now price',
             'data_type'     => 'price'
         ];
+        $args[] = [
+            'id'            => 'fbs_bid_closing_date',
+            'name'          => 'fbs_bid_closing_date',
+            'label'         =>  __( 'Bid Closing Date', 'fbs-woocommerce-auction' ),
+            'placeholder'   => 'yyyy-mm-dd',
+            // 'class'         =>  'fbs_ap_input',
+            'type'          =>  'date',
+            // 'desc_tip'      =>  true,
+            'description'   => 'Cloose bid closing time',
+
+        ];
 
         // if need to add more field or change field data, then we can use this filter hook
         $args = apply_filters('fbs_ap_panel_field_args', $args);
@@ -86,12 +97,14 @@ class AddFields{
         $fbs_opening_price = $_POST['fbs_opening_price'] ?? false;
         $fbs_lowest_price = $_POST['fbs_lowest_price'] ?? false;
         $fbs_buynow_price = $_POST['fbs_buynow_price'] ?? false;
+        $fbs_bid_closing_date = $_POST['fbs_bid_closing_date'] ?? false;
         $fbs_product_type = $_POST['fbs_product_type'] ?? false;
         
         //Updating Here
         update_post_meta( $post_id, 'fbs_opening_price', esc_attr( $fbs_opening_price ) );
         update_post_meta( $post_id, 'fbs_lowest_price', esc_attr( $fbs_lowest_price ) );
         update_post_meta( $post_id, 'fbs_buynow_price', esc_attr( $fbs_buynow_price ) );
+        update_post_meta( $post_id, 'fbs_bid_closing_date', esc_attr( $fbs_bid_closing_date ) );
         update_post_meta( $post_id, 'fbs_product_type', esc_attr( $fbs_product_type ) );
     }
 }

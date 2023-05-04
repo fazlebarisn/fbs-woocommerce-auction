@@ -37,6 +37,19 @@ add_action( 'init', 'fbs_register_auction_product_type' );
  * Here we will override the default single page template
  * All template will be in templates/woocommerce folder
  *
+ * @return void timezone
+ * @since 1.0.1
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ */
+function get_fbs_wp_timezone() {	
+	$fbs_time_zone = wp_timezone();
+	return $fbs_time_zone;
+} 
+
+/**
+ * Here we will override the default single page template
+ * All template will be in templates/woocommerce folder
+ *
  * @return void
  * @since 1.0.1
  * @author Fazle Bari <fazlebarisn@gmail.com>
