@@ -27,7 +27,6 @@ if ( $product->is_in_stock() ) : ?>
 				// 'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
 			)
 		);
-
 		do_action( 'woocommerce_after_add_to_cart_quantity' );
 		?>
 		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" />
@@ -36,7 +35,7 @@ if ( $product->is_in_stock() ) : ?>
 		<?php echo apply_filters('single_add_to_cart_text',sprintf(__( 'Buy Now %s', 'ultimate-woocommerce-auction' ),wc_price($product->get_regular_price())), $product); ?></button>
 		
 		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" />
-        <input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
+        <!-- <input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" /> -->
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 	</form>

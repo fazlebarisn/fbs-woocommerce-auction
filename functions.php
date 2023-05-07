@@ -73,4 +73,22 @@ function fbs_is_purchasable(  $is_purchasable, $object ){
   return $is_purchasable;
 }
 add_filter('woocommerce_is_purchasable', 'fbs_is_purchasable', 10, 2);
+ 
+/**
+ * Modify is_sold_individually
+ * Auction product should be one, I am not sure about this maybe we need to change it 
+ * 
+ * @return $bool  
+ * @since 1.0.1
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ */
+function fbs_is_sold_individually(){
 
+  global $product;
+
+  if( method_exists( $product, 'get_type') && $product->get_type() == 'fbsauction' ){
+    return true;
+  }
+
+}
+add_filter( 'woocommerce_is_sold_individually', 'fbs_is_sold_individually' );
