@@ -91,4 +91,4 @@ function fbs_is_sold_individually(){
   }
 
 }
-add_filter( 'woocommerce_is_sold_individually', 'fbs_is_sold_individually' );
+//add_filter( 'woocommerce_is_sold_individually', 'fbs_is_sold_individually' );
