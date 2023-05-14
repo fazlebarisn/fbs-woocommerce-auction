@@ -11,7 +11,6 @@ if( method_exists( $product, 'get_type') && !$product->get_type() == 'fbsauction
 if ( ! $product->is_purchasable() || !$product->is_sold_individually() ) {
 	// return;
 }
-dd($product->get_regular_price());
 echo wc_get_stock_html( $product ); // WPCS: XSS ok.
 
 if ( $product->is_in_stock() ) : ?>
