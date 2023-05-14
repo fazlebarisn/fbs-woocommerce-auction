@@ -12,6 +12,11 @@ if ( ! $product->is_purchasable() || !$product->is_sold_individually() ) {
 	// return;
 }
 
+// Get bid closing date 
+$fbs_bid_closing_date = get_post_meta( $product->get_ID(), 'fbs_bid_closing_date', true ) ?? '';
+// Get current date
+$current_date = current_time( 'Y-m-d' );
+
 echo wc_get_stock_html( $product ); // WPCS: XSS ok.
 
 if ( $product->is_in_stock() ) : ?>
@@ -35,8 +40,11 @@ if ( $product->is_in_stock() ) : ?>
 		?>
 		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" />
 
-		<button type="submit" class="single_add_to_cart_button button alt">
-		<?php echo apply_filters('single_add_to_cart_text',sprintf(__( 'Buy Now %s', 'ultimate-woocommerce-auction' ),wc_price($product->get_regular_price())), $product); ?></button>
+		<?php if( $current_date <= $fbs_bid_closing_date ){ ?>
+			<button type="submit" class="single_add_to_cart_button button alt">
+				<?php echo apply_filters('single_add_to_cart_text',sprintf(__( 'Buy Now %s', 'ultimate-woocommerce-auction' ),wc_price($product->get_regular_price())), $product); ?>
+			</button>
+		<?php }else{ esc_html_e('Bid is over');}?>
 		
 		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" />
         <!-- <input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" /> -->
